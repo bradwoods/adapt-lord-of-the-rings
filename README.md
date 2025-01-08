@@ -1,7 +1,5 @@
 # Lord of the Rings - browser adapation
 
-[lordoftherings.bradwoods.io](https://lordoftherings.bradwoods.io/)
-
 [Details](https://garden.bradwoods.io/notes/creative/browser-adaptation)
 
 ## Quick start
