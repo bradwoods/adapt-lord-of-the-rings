@@ -1,0 +1,69 @@
+.frameLayer {
+    width: 100%;
+    height: 100vh;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: var(--z-index-frame);
+
+    pointer-events: none;
+    transition: var(--transition-frame);
+
+    & img {
+        position: absolute;
+        width: 2400px;
+        aspect-ratio: 4800 / 2688;
+
+        &:first-child {
+            left: 0;
+            top: 0;
+        }
+
+        &:nth-child(2) {
+            right: 0;
+            top: 0;
+        }
+
+        &:nth-child(3) {
+            right: 0;
+            bottom: 0;
+        }
+
+        &:nth-child(4) {
+            left: 0;
+            bottom: 0;
+        }
+    }
+}
+
+/* Hide frame when in moria or map-size="large" */
+/* prettier-ignore */
+body:is(
+        [data-ring-location="westGate1"],
+        [data-ring-location="westGate2"],
+        [data-ring-location="crossroads"],
+        [data-ring-location="hall1"],
+        [data-ring-location="chamber"],
+        [data-ring-location="chamberDoor"],
+        [data-ring-location="stairs"],
+        [data-ring-location="hall2"],
+        [data-ring-location="bridge1"],
+        [data-ring-location="bridge2"],
+        [data-ring-location="hall3"]
+    ):not(
+        body:is(
+            [data-screen="minasTirith"], 
+            [data-screen="gondor"]
+        )
+    ) .frameLayer,
+    body[data-map-size="large"] .frameLayer {
+        opacity: 0;
+
+}
+
+@media (max-width: 900px) {
+    .frameLayer {
+        display: none;
+    }
+}

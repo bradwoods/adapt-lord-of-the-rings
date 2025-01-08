@@ -1,0 +1,120 @@
+.ring {
+    width: 22px;
+    aspect-ratio: 1;
+
+    border-radius: 50%;
+
+    position: absolute;
+    /* rivendell */
+    top: 305px;
+    left: 760px;
+
+    cursor: pointer;
+    filter: var(--drop-shadow-ring);
+    transition: var(--transition-ring);
+
+    & img {
+        width: 100%;
+    }
+}
+
+/* Click target */
+.ring::after {
+    content: "";
+
+    width: 44px;
+    aspect-ratio: 1;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+}
+
+.ring:hover {
+    scale: 1.2;
+}
+
+.ring:active {
+    scale: 1.1;
+}
+
+body[data-ring-location="hollin1"],
+body[data-ring-location="hollin2"] {
+    .ring {
+        translate: -20px 90px;
+    }
+}
+
+body[data-ring-location="caradhras1"],
+body[data-ring-location="caradhras2"] {
+    .ring {
+        translate: -6px 127px;
+    }
+}
+
+body[data-ring-location="wallsOfMoria"] {
+    .ring {
+        translate: -22px 147px;
+    }
+}
+
+body:is([data-ring-location="westGate1"], [data-ring-location="westGate2"]) {
+    .ring {
+        translate: -614px 221px;
+    }
+}
+
+body[data-ring-location="crossroads"] {
+    .ring {
+        translate: 40px 230px;
+    }
+}
+
+body[data-ring-location="hall1"] {
+    .ring {
+        translate: 450px 116px;
+    }
+}
+
+body[data-ring-location="chamber"] {
+    .ring {
+        translate: 470px 86px;
+    }
+}
+
+body[data-ring-location="chamberDoor"] {
+    .ring {
+        translate: 494px 86px;
+    }
+}
+
+body[data-ring-location="stairs"] {
+    .ring {
+        translate: 524px 208px;
+    }
+}
+
+body[data-ring-location="hall2"] {
+    .ring {
+        translate: 557px 328px;
+    }
+}
+
+body:is([data-ring-location="bridge1"], [data-ring-location="bridge2"]) {
+    .ring {
+        translate: 594px 370px;
+    }
+}
+
+body[data-ring-location="hall3"] {
+    .ring {
+        translate: 668px 330px;
+    }
+}
+
+body[data-ring-location="dimrillDale"] {
+    .ring {
+        translate: 8px 148px;
+    }
+}

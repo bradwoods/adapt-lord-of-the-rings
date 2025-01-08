@@ -1,0 +1,121 @@
+*,
+*::before,
+*::after {
+    /* Use a more intuitive box-sizing model */
+    box-sizing: border-box;
+    /* https://www.youtube.com/watch?v=cH8VbLM1958 */
+    min-width: 0;
+    /* Remove all margins and padding */
+    margin: 0;
+    padding: 0;
+}
+
+/* Only show focus outline when the user is tabbing (not when clicking) */
+*:focus {
+    outline: none;
+}
+
+*:focus-visible {
+    outline: 1px solid blue;
+}
+
+html {
+    /* Allow percentage-based heights */
+    /* Setting width: 100% isn't required because it is a default for block-level elements (html and body are block level) */
+    height: 100%;
+
+    font-family: var(--font-family);
+    /* Sets font-size to 10px. 
+    Percent units are used to ensure font will scale if user has a custom font-size browser setting (for ally).
+    Using 10px as the base to make it easy to set font sizes in elements. Example: for 16px, use 1.6rem, for 32px, use 3.2rem, ...  */
+    font-size: calc(100% / 16 * 10);
+    line-height: var(--line-height);
+    /* Prevent the browser from synthesizing missing typefaces */
+    font-synthesis: none;
+    font-smooth: always;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    /* Prevent mobile browsers increasing font-size */
+    -moz-text-size-adjust: none;
+    -webkit-text-size-adjust: none;
+    text-size-adjust: none;
+
+    color: var(--color-copy);
+}
+
+body {
+    min-height: 100%;
+
+    /* Prevent the rubber band effect when the user scrolls to the top or bottom of the page (WebKit only) */
+    overscroll-behavior: none;
+
+    /* UI controls color (example: range input) */
+    accent-color: var(--color-copy);
+
+    /* Because overscroll-behavior: none only works on WebKit, a background color is set that will show when overscroll occurs  */
+    /* controls scrollbar color (Chrome) */
+    background: var(--color-paper);
+}
+
+body[data-map-size="large"] {
+    /* Lock scrolling */
+    overflow: hidden;
+}
+
+p {
+    /* Prevents orphans (ensures the final line of text has at least two words). */
+    text-wrap: pretty;
+    /* Avoid text overflow */
+    overflow-wrap: break-word;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    /* Stronger effect than 'pretty'. Attempts to make each line of text the same length */
+    text-wrap: balance;
+    font-weight: 400;
+}
+
+strong {
+    overflow-wrap: break-word;
+}
+
+/* Remove unintuitive behaviour such as gaps around media elements.  */
+img,
+picture,
+video,
+canvas,
+svg,
+iframe {
+    display: block;
+    border: none;
+}
+
+input,
+textarea,
+button,
+button:disabled {
+    font: inherit;
+    border: none;
+    border-radius: 0;
+    background: none;
+    color: inherit;
+}
+
+fieldset {
+    border: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul,
+ol {
+    list-style: none;
+}

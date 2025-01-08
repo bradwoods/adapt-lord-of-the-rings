@@ -1,0 +1,52 @@
+:root {
+    --white: hsl(0, 0%, 100%);
+    --brown: hsl(34, 60%, 93%);
+    --red: hsl(4, 90%, 58%);
+
+    --white0: hsl(0, 0%, 100%);
+    --white1: hsl(0, 0%, 75%);
+    --white2: hsl(0, 0%, 55%);
+
+    --black1: hsl(0, 0%, 0%);
+    --black0: hsl(0, 0%, 11%);
+    --black1: hsl(0, 0%, 13%);
+    --black2: hsl(0, 0%, 21%);
+    --black3: hsl(0, 0%, 45%);
+
+    --gradient-staff-background: radial-gradient(
+        ellipse at 50% 100%,
+        hsla(0, 0%, 11%, 0) 63%,
+        hsla(0, 0%, 11%, 1) 80%
+    );
+    --gradient-door-light: linear-gradient(
+        0deg,
+        hsla(35, 58%, 93%, 1) 0%,
+        hsla(35, 58%, 93%, 0) 70%
+    );
+    --gradient-timeline-light: linear-gradient(
+        90deg,
+        hsla(35, 58%, 93%, 1) 0%,
+        hsla(35, 58%, 93%, 0)
+    );
+    /* See timelineLayer.css for why this isn't in themes.css. */
+    --gradient-timeline-dark: linear-gradient(
+        90deg,
+        hsla(0, 0%, 11%, 1) 0%,
+        hsla(0, 0%, 11%, 0)
+    );
+
+    /* Not used (as frame is an image) but here to compare with other colors */
+    --color-frame: var(--black0);
+    --color-paper: var(--brown);
+    --color-path: var(--white);
+    --color-path-old: var(--red);
+    --color-heading: var(--black1);
+    --color-copy: var(--black2);
+    --color-character-update: var(--red);
+    --color-border: var(--black2);
+    --color-list-marker: var(--black3);
+    --color-day-line: var(--black3);
+    --color-button-hover: var(--black1);
+    --color-button-large-active: var(--brown);
+    --color-button-large-active-background: var(--black0);
+}

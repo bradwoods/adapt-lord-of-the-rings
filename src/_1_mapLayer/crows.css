@@ -1,0 +1,20 @@
+@keyframes spin {
+    to {
+        rotate: 360deg;
+    }
+}
+
+.mapLayer .crows {
+    width: 90px;
+
+    position: absolute;
+    top: 32%;
+    left: 44%;
+
+    display: none;
+    animation: var(--keyframes-crows);
+}
+
+body[data-crows="true"] .mapLayer .crows {
+    display: unset;
+}

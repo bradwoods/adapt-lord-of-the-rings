@@ -1,0 +1,27 @@
+.doorLight {
+    --height: 10vh;
+
+    grid-column: 1 / -1;
+    height: var(--height);
+
+    position: sticky;
+    top: calc(100vh - var(--height));
+    left: 0;
+    z-index: var(--z-index-copy-layer-bottom-artifacts);
+    filter: blur(5px);
+}
+
+.doorLight::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background: var(--gradient-door-light);
+    clip-path: polygon(
+        0% 0,
+        100% 0,
+        calc(100% - var(--padding-page)) 100%,
+        var(--padding-page) 100%
+    );
+}

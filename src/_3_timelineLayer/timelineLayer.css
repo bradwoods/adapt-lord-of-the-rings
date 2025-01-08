@@ -1,0 +1,219 @@
+.timelineLayer {
+    height: var(--height-timeline);
+
+    position: fixed;
+    left: var(--map-left);
+    right: var(--map-right);
+    bottom: var(--padding-page);
+    overflow: hidden;
+
+    color: var(--color-copy);
+
+    .days {
+        flex-shrink: 0;
+
+        position: absolute;
+        left: 50%;
+        bottom: 24px;
+
+        display: flex;
+        align-items: center;
+
+        transition: var(--transition-timeline-position);
+
+        .day {
+            height: 10px;
+            width: 1px;
+            background: var(--color-day-line);
+        }
+
+        .startOfMonthLine {
+            height: 14px;
+            width: 2px;
+            background: var(--color-border);
+        }
+
+        .startOfMonthCopy {
+            position: absolute;
+            top: calc(100% + 6px);
+            translate: -50%;
+
+            font-size: var(--font-size-xs);
+            color: var(--color-border);
+        }
+
+        .event {
+            position: absolute;
+            bottom: calc(100% + 4px);
+            /* +1.5px to align with day (not sure why it's required) */
+            translate: calc(-50% + 1.5px);
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+
+            opacity: 0;
+            transition: var(--transition-timeline-event);
+
+            .copy {
+                font-size: var(--font-size-xs);
+                font-weight: bold;
+                color: var(--color-heading);
+            }
+
+            .arrow {
+                --width: 6px;
+                --height: 4px;
+
+                --width-impl: calc(var(--width) / 2);
+
+                width: 0px;
+                height: 0px;
+                border-style: solid;
+                border-width: var(--height) var(--width-impl) 0
+                    var(--width-impl);
+                border-color: var(--color-heading) transparent transparent
+                    transparent;
+            }
+        }
+
+        /* Prevent events overlapping */
+        .event.moria {
+            bottom: calc(100% + 24px);
+        }
+
+        .event.balrog .copy {
+            translate: 58px;
+        }
+    }
+
+    /* Side fade -------------------------------------------------------- */
+    /* Because gradients can't be animated in CSS, a light and dark version is used and opacity controls showing / hiding */
+    .gradient {
+        width: 20%;
+        height: 100%;
+
+        position: absolute;
+        top: 0;
+        z-index: 1;
+
+        background: var(--gradient-timeline-light);
+        animation: var(--keyframes-timeline-gradient);
+
+        &.left {
+            left: 0;
+        }
+
+        &.right {
+            right: 0;
+            scale: -1;
+        }
+
+        &.dark {
+            background: var(--gradient-timeline-dark);
+            display: none;
+        }
+    }
+}
+
+/* -------------------------------------------------------- */
+body:is([data-screen="sound"], [data-map-size="large"]) .timelineLayer {
+    display: none;
+}
+
+/* Side fade -------------------------------------------------------- */
+/* In moria */
+body:is(
+        [data-ring-location="westGate1"],
+        [data-ring-location="westGate2"],
+        [data-ring-location="crossroads"],
+        [data-ring-location="hall1"],
+        [data-ring-location="chamber"],
+        [data-ring-location="chamberDoor"],
+        [data-ring-location="stairs"],
+        [data-ring-location="hall2"],
+        [data-ring-location="bridge1"],
+        [data-ring-location="bridge2"],
+        [data-ring-location="hall3"]
+    )
+    .timelineLayer
+    .gradient {
+    &.light {
+        display: none;
+    }
+
+    &.dark {
+        display: unset;
+    }
+}
+
+/* Show events based on state -------------------------------------------------------- */
+body[data-ring-location="rivendell"] .timelineLayer .event.rivendell {
+    opacity: 1;
+}
+
+body:not([data-ring-location="rivendell"]) .timelineLayer .event.rivendell {
+    opacity: var(--opacity-fade);
+}
+
+body:is(
+        [data-ring-location="hollin1"],
+        [data-ring-location="hollin2"],
+        [data-ring-location="caradhras1"],
+        [data-ring-location="caradhras2"],
+        [data-ring-location="wallsOfMoria"],
+
+    )
+    .timelineLayer
+    .event.hollin {
+    opacity: 1;
+}
+
+body:not(
+        :is(
+                [data-ring-location="rivendell"],
+                [data-ring-location="hollin1"],
+                [data-ring-location="hollin2"],
+                [data-ring-location="caradhras1"],
+                [data-ring-location="caradhras2"],
+                [data-ring-location="wallsOfMoria"],
+
+            )
+    )
+    .timelineLayer
+    .event.hollin {
+    opacity: var(--opacity-fade);
+}
+
+body:is(
+        [data-ring-location="westGate1"],
+        [data-ring-location="westGate2"],
+        [data-ring-location="crossroads"],
+        [data-ring-location="hall1"],
+        [data-ring-location="chamber"],
+        [data-ring-location="chamberDoor"],
+        [data-ring-location="stairs"],
+        [data-ring-location="hall2"],
+        [data-ring-location="bridge1"],
+        [data-ring-location="bridge2"],
+        [data-ring-location="hall3"]
+    )
+    .timelineLayer
+    .event.moria {
+    opacity: 1;
+}
+
+body[data-ring-location="dimrillDale"] .timelineLayer .event.moria {
+    opacity: var(--opacity-fade);
+}
+
+body[data-ring-location="dimrillDale"] .timelineLayer .event.balrog {
+    opacity: 1;
+}
+
+@media (max-width: 900px) {
+    .timelineLayer {
+        display: none;
+    }
+}

@@ -1,0 +1,49 @@
+.mapLayer button {
+    cursor: pointer;
+}
+
+.mapLayer button[data-value="minasTirith"] {
+    width: 56px;
+    aspect-ratio: 1;
+
+    position: absolute;
+    top: 66.8%;
+    left: 61.6%;
+}
+
+.mapLayer button[data-value="gondor"] {
+    width: 400px;
+    aspect-ratio: 6 / 1;
+
+    position: absolute;
+    top: 70.5%;
+    left: 40%;
+
+    rotate: 20deg;
+}
+
+/* Hide gondor and minasTirith when in moria */
+/* prettier-ignore */
+body:is(
+        [data-ring-location="westGate1"],
+        [data-ring-location="westGate2"],
+        [data-ring-location="crossroads"],
+        [data-ring-location="hall1"],
+        [data-ring-location="chamber"],
+        [data-ring-location="chamberDoor"],
+        [data-ring-location="stairs"],
+        [data-ring-location="hall2"],
+        [data-ring-location="bridge1"],
+        [data-ring-location="bridge2"],
+        [data-ring-location="hall3"]
+    ):not(body:is(
+        [data-screen="minasTirith"], 
+        [data-screen="gondor"]
+    )) 
+    .mapLayer
+        button:is(
+            [data-value="minasTirith"], 
+            [data-value="gondor"]
+    ) {
+    display: none;
+}

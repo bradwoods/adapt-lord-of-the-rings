@@ -1,0 +1,28 @@
+/* In moria */
+body:is(
+        [data-ring-location="westGate1"],
+        [data-ring-location="westGate2"],
+        [data-ring-location="crossroads"],
+        [data-ring-location="hall1"],
+        [data-ring-location="chamber"],
+        [data-ring-location="chamberDoor"],
+        [data-ring-location="stairs"],
+        [data-ring-location="hall2"],
+        [data-ring-location="bridge1"],
+        [data-ring-location="bridge2"],
+        [data-ring-location="hall3"]
+    ) {
+    --color-paper: var(--color-frame);
+    --color-heading: var(--white0);
+    --color-copy: var(--white1);
+    --color-border: var(--white1);
+    --color-list-marker: var(--white2);
+    --color-day-line: var(--white2);
+    --color-button-hover: var(--white0);
+    --color-button-large-active: var(--black1);
+    --color-button-large-active-background: var(--brown);
+
+    --border: 1px solid var(--white1);
+
+    /* --gradient-timeline for moria is defined in root.css. See timelineLayer.css for details. */
+}

@@ -1,0 +1,228 @@
+.loreLayer {
+    width: var(--width-copy-layer);
+
+    position: relative;
+
+    padding: var(--padding-page);
+    display: none;
+    grid:
+        "header" auto
+        "content" auto
+        / minmax(0, var(--max-width-p));
+    justify-content: center;
+    gap: var(--gap-lore);
+
+    color: var(--color-copy);
+
+    & header {
+        grid-area: header;
+
+        display: flex;
+    }
+
+    & button {
+        position: relative;
+
+        font-size: var(--font-size-m);
+        cursor: pointer;
+        text-decoration: underline;
+        text-underline-offset: var(--button-inline-underline-offset);
+
+        transition: var(--transition-button-small);
+
+        /* Touch target */
+        &::after {
+            content: "";
+
+            width: 100%;
+            height: 100%;
+            min-width: var(--size-min-button);
+            min-height: var(--size-min-button);
+
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            translate: -50% -50%;
+        }
+
+        &:hover {
+            color: var(--color-button-hover);
+        }
+    }
+
+    & button.back {
+        & svg {
+            width: 10px;
+
+            position: absolute;
+            top: 50%;
+            right: calc(100% + var(--size-xs));
+            translate: 50% -50%;
+
+            fill: currentColor;
+            opacity: 0;
+            transition: var(--transition-button-small);
+        }
+
+        &:hover {
+            & svg {
+                opacity: 1;
+                translate: 0% -50%;
+            }
+        }
+    }
+
+    & button:not(.back) {
+        text-underline-offset: var(--button-inline-underline-offset);
+
+        &:hover {
+            text-underline-offset: var(--button-inline-hover-underline-offset);
+        }
+    }
+
+    .content {
+        grid-area: content;
+
+        padding-bottom: var(--size-xxl);
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--gap-lore);
+
+        animation: var(--keyframes-lore-content);
+
+        & img {
+            max-width: 100%;
+        }
+
+        & h2 {
+            font-size: var(--font-size-xl);
+            text-transform: uppercase;
+            letter-spacing: var(--letter-spacing-heading);
+            text-align: center;
+            color: var(--color-heading);
+        }
+
+        & h3 {
+            font-size: var(--font-size-l);
+            text-transform: uppercase;
+            letter-spacing: var(--letter-spacing-heading);
+            text-align: center;
+            color: var(--color-heading);
+        }
+
+        & h4 {
+            font-size: var(--font-size-m);
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        & p {
+            width: 100%;
+            max-width: var(--max-width-p);
+
+            font-size: var(--font-size-m);
+
+            & em {
+                font-style: italic;
+            }
+        }
+
+        & iframe {
+            width: 100%;
+            max-width: 100%;
+            aspect-ratio: 16 / 9;
+
+            border: var(--border);
+        }
+    }
+
+    /* Characters layout is different than other lore sections */
+    .content.characters {
+        grid:
+            "heading" auto
+            "form" auto
+            "characterDetails" auto
+            / 1fr;
+        gap: var(--gap-lore);
+        align-content: start;
+
+        & form {
+            grid-area: form;
+
+            & fieldset {
+                display: grid;
+                grid-template-rows: repeat(auto-fit, 1fr);
+                grid-template-columns: repeat(5, 1fr);
+                gap: var(--size-xs);
+
+                & [type="radio"] {
+                    position: absolute;
+                    opacity: 0;
+                    width: 0;
+                    height: 0;
+                }
+
+                & [type="radio"] + img {
+                    cursor: pointer;
+                    border: var(--border);
+                    outline: var(--border);
+                    outline-color: transparent;
+                    outline-offset: 1px;
+                    transition: var(--transition-character-portrait);
+                }
+
+                & img:hover {
+                    outline-color: var(--color-border);
+                }
+
+                [type="radio"]:not(:checked) + img {
+                    filter: grayscale(1);
+                }
+            }
+        }
+    }
+}
+
+body[data-map-size="small"]:is(
+        [data-screen="characters"],
+        [data-screen="gondor"],
+        [data-screen="minasTirith"]
+    )
+    .loreLayer {
+    display: grid;
+}
+
+body[data-screen="gondor"] .loreLayer .content.gondor,
+body[data-screen="minasTirith"] .loreLayer .content.minasTirith {
+    display: flex;
+}
+body[data-screen="characters"] .loreLayer .content.characters {
+    display: grid;
+}
+
+/* Character updates --------------------------------------------------------------- */
+body:is(
+        [data-ring-location="westGate1"],
+        [data-ring-location="westGate2"],
+        [data-ring-location="crossroads"],
+        [data-ring-location="hall1"],
+        [data-ring-location="chamber"],
+        [data-ring-location="chamberDoor"],
+        [data-ring-location="stairs"],
+        [data-ring-location="hall2"],
+        [data-ring-location="bridge1"],
+        [data-ring-location="bridge2"],
+        [data-ring-location="hall3"],
+        [data-ring-location="dimrillDale"]
+    )
+    .loreLayer
+    label:has(input[value="bill"]) {
+    opacity: var(--opacity-fade);
+}
+
+body[data-ring-location="dimrillDale"]
+    .loreLayer
+    label:has(input[value="gandalf"]) {
+    opacity: var(--opacity-fade);
+}

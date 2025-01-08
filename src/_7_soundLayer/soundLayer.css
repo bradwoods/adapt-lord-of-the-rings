@@ -1,0 +1,61 @@
+.soundLayer {
+    width: 100%;
+    /* dvh units to center center content on mobile */
+    height: 100dvh;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    display: none;
+    grid:
+        ". ." auto
+        ". ." auto
+        / auto auto;
+    justify-content: center;
+    align-content: center;
+    gap: var(--size-s) var(--size-xs);
+
+    & h2 {
+        grid-column: 1 / -1;
+        font-size: var(--font-size-xl);
+        letter-spacing: var(--letter-spacing-heading);
+        text-align: center;
+        text-transform: uppercase;
+        color: var(--color-heading);
+    }
+
+    & button {
+        width: var(--size-btn-large);
+        aspect-ratio: 1;
+
+        font-size: var(--font-size-m);
+        border: var(--border);
+        cursor: pointer;
+        outline: var(--border);
+        outline-offset: 1px;
+        outline-color: transparent;
+
+        transition: var(--transition-button-large);
+
+        &:first-of-type {
+            justify-self: end;
+        }
+
+        &:hover,
+        &:focus-visible,
+        &:active {
+            outline-color: var(--color-border);
+        }
+
+        &:active {
+            color: var(--color-button-large-active);
+            background: var(--color-button-large-active-background);
+        }
+    }
+}
+
+body[data-screen="sound"] .soundLayer {
+    display: grid;
+    animation: var(--keyframes-sound-layer);
+}

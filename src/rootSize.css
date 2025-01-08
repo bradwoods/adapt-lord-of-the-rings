@@ -1,0 +1,48 @@
+:root {
+    --size-xs: 4px;
+    --size-s: 16px;
+    --size-m: 24px;
+    --size-l: 48px;
+    --size-xl: 96px;
+    --size-xxl: 50vh;
+
+    --size-min-button: 24px;
+    --size-btn-large: 48px;
+
+    /* WIDTH */
+    --max-width-p: 580px;
+    /* Because the map has a 2nd border around it (using outline) the copy layer overlaps it unless width reduced by 3px */
+    --width-copy-layer: calc(50% - 3px);
+
+    /* HEIGHT */
+    --height-timeline: 84px;
+
+    /* PADDING */
+    --padding-page: var(--size-m);
+
+    /* GAP */
+    --gap-p-p: var(--size-m);
+    --gap-p-img: var(--size-l);
+    --gap-p-song: var(--size-l);
+    --gap-p-heading: var(--size-xxl);
+    --gap-header-heading: var(--size-l);
+    --gap-heading-p: var(--size-xl);
+    --gap-heading-lines: 8px;
+    --gap-lore: var(--size-l);
+    --gap-map-timeline: var(--size-s);
+
+    /* MAP CLIP */
+    --map-top: calc(var(--padding-page) * 1.5);
+    --map-right: calc(var(--padding-page) * 1.5);
+    --map-bottom: calc(
+        var(--padding-page) + var(--height-timeline) + var(--gap-map-timeline)
+    );
+    --map-left: 50%;
+}
+
+@media (max-width: 900px) {
+    :root {
+        --size-min-button: 44px;
+        --width-copy-layer: 100%;
+    }
+}

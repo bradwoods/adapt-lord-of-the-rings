@@ -1,0 +1,30 @@
+.vignetteLayer {
+    position: fixed;
+    inset: 0;
+
+    box-shadow: var(--box-shadow-vignette);
+    pointer-events: none;
+    opacity: 0;
+
+    transition: var(--transition-vignette);
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+    }
+}
+
+body:has(.mapLayer button.ring:hover) .vignetteLayer {
+    opacity: 1;
+
+    /* Fade out when sound finishes */
+    animation: fadeOut var(--duration-vignette) var(--ease-vignette) forwards;
+    animation-delay: 17s;
+}
+
+@media (max-width: 900px) {
+    .vignetteLayer {
+        display: none;
+    }
+}

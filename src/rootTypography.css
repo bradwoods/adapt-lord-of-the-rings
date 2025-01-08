@@ -1,0 +1,15 @@
+:root {
+    /* https://modernfontstacks.com/ */
+    --font-family: "Iowan Old Style", "Palatino Linotype", "URW Palladio L",
+        P052, serif;
+    /* https://typescale.com/ - major 3rd */
+    --font-size-xs: 1.024rem;
+    --font-size-s: 1.28rem;
+    --font-size-m: 1.6rem;
+    --font-size-l: 2rem;
+    --font-size-xl: 2.5rem;
+
+    --line-height: 1.5;
+
+    --letter-spacing-heading: 0.1em;
+}

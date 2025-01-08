@@ -1,0 +1,131 @@
+.storyLayer {
+    width: var(--width-copy-layer);
+    /* See paddingBottom (below) for why there is no bottom padding here */
+    /* Grid columns provide side-padding (to allow some elements, like doorLight, to bleed into padding) */
+    padding-top: var(--padding-page);
+
+    /* To position in front of paperLayer */
+    position: relative;
+
+    display: none;
+    grid-template-rows: 1fr;
+    /* prettier-ignore */
+    grid-template-columns: 
+        var(--padding-page) 
+        minmax(0px, var(--max-width-p)) 
+        var(--padding-page);
+    justify-content: center;
+
+    color: var(--color-copy);
+    animation: var(--keyframes-story-layer);
+
+    /* By default, put all content in middle column */
+    & > * {
+        grid-column: 2;
+    }
+
+    .intersector {
+        width: 100%;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    & p {
+        width: 100%;
+
+        font-size: var(--font-size-m);
+
+        transition: var(--transition-story-layer-text);
+
+        & em {
+            font-style: italic;
+        }
+    }
+
+    .imgLayout {
+        width: 100%;
+
+        display: flex;
+        justify-content: center;
+
+        position: relative;
+    }
+
+    /* To put in front of staff background */
+    .imgLayout:has(.tombLight) {
+        z-index: var(--z-index-light-beam);
+    }
+
+    & :is(img, .imgLayout) {
+        max-width: 100%;
+    }
+
+    & p + p,
+    .intersector + .intersector {
+        margin-top: var(--gap-p-p);
+    }
+
+    & .imgLayout {
+        margin: var(--gap-p-img) 0;
+    }
+
+    & h2 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--gap-heading-lines);
+
+        transition: var(--transition-story-layer-text);
+
+        & > span:first-child {
+            font-size: var(--font-size-m);
+            font-style: italic;
+            color: var(--color-heading);
+        }
+
+        & > span:nth-child(2) {
+            font-size: var(--font-size-xl);
+            text-transform: uppercase;
+            letter-spacing: var(--letter-spacing-heading);
+            text-align: center;
+            color: var(--color-heading);
+        }
+    }
+
+    /* The first chapter heading */
+    & h2:first-child {
+        margin: 30vh 0 var(--gap-heading-p);
+    }
+
+    & h2:not(:first-child) {
+        margin: var(--gap-p-heading) 0 var(--gap-heading-p);
+    }
+
+    .dinkus {
+        text-align: center;
+    }
+
+    .song {
+        margin: var(--gap-p-song) 0;
+
+        display: flex;
+        flex-direction: column;
+
+        font-style: italic;
+    }
+
+    & :is(p, h2).fade {
+        opacity: var(--opacity-fade);
+    }
+
+    /* Using this instead of setting on parent because doorLight.css needs it for sticky to work as expected */
+    .paddingBottom {
+        height: var(--size-xxl);
+    }
+}
+
+body[data-screen="story"][data-map-size="small"] .storyLayer {
+    display: grid;
+}

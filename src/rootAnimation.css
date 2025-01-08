@@ -1,0 +1,71 @@
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+:root {
+    --dur-x-slow: 5s;
+    --dur-slow: 3s;
+    --dur-med: 2s;
+    --dur-fast: 1s;
+
+    --ease-heavy: cubic-bezier(0.3, 0, 0.2, 1);
+
+    --transition-button-large: all 120ms ease-in-out;
+    --transition-button-small: all 240ms ease-in-out;
+
+    /* LAYERS */
+    --transition-map-layer: opacity var(--dur-fast) ease-in-out;
+    --transition-paper-layer: opacity var(--dur-fast) ease-in-out;
+    --keyframes-sound-layer: fadeIn var(--dur-fast) ease-in-out both;
+    --keyframes-story-layer: fadeIn var(--dur-fast) ease-in-out both;
+
+    /* prettier-ignore */
+    --transition-character-portrait: 
+        filter 500ms ease-in-out,
+        outline-color 240ms ease-in-out;
+
+    /* RING */
+    /* prettier-ignore */
+    --transition-ring: 
+        scale var(--dur-fast) ease-in-out, 
+        translate var(--dur-med) var(--ease-heavy);
+
+    /* PATH */
+    --transition-path: all var(--dur-med) var(--ease-heavy);
+
+    /* TIMELINE */
+    --transition-timeline-event: opacity var(--dur-slow) var(--ease-heavy);
+    --transition-timeline-position: translate var(--dur-slow) var(--ease-heavy);
+    --keyframes-timeline-gradient: fadeIn var(--dur-slow) var(--ease-heavy) both
+        var(--dur-slow);
+
+    --keyframes-lore-content: fadeIn var(--dur-fast) ease-in-out both;
+
+    /* prettier-ignore */
+    --transition-map-layout: 
+        transform var(--dur-slow) var(--ease-heavy),
+        /* Use for reseting position after panning */
+        translate var(--dur-slow) var(--ease-heavy);
+    --transition-map: opacity var(--dur-fast) ease-in-out;
+    --transition-frame: opacity var(--dur-fast) ease-in-out;
+    /* prettier-ignore */
+    --transition-story-layer-text: 
+        color var(--dur-fast) ease-in-out,
+        opacity 240ms ease-in-out;
+
+    --transition-staff: translate var(--dur-fast) ease-in-out;
+    --transition-tomb-light: all var(--dur-fast) ease-in-out;
+
+    /* VIGNETTE */
+    --duration-vignette: var(--dur-x-slow);
+    --ease-vignette: cubic-bezier(0, 0, 0.5, 1);
+    --transition-vignette: opacity var(--duration-vignette) var(--ease-vignette);
+
+    /* CROWS */
+    --keyframes-crows: spin 10s linear infinite;
+}

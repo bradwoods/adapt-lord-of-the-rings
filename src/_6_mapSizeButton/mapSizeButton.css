@@ -1,0 +1,77 @@
+button.mapSize {
+    width: var(--size-btn-large);
+    aspect-ratio: 1;
+
+    position: fixed;
+    top: 12px;
+    /* Prevent layout shift when screen changes from scrollbar to no scrollbar */
+    right: calc(12px - 1 * (100vw - 100%));
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+    background: var(--color-paper);
+    border: var(--border);
+    outline: var(--border);
+    outline-offset: 1px;
+    outline-color: transparent;
+
+    transition: var(--transition-button-large);
+
+    & svg {
+        width: 36px;
+
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        translate: -50% -50%;
+
+        fill: var(--color-copy);
+    }
+
+    &:hover,
+    &:focus-visible,
+    &:active {
+        outline-color: var(--color-border);
+    }
+
+    &:active {
+        background: var(--color-button-large-active-background);
+
+        & svg {
+            fill: var(--color-button-large-active);
+        }
+    }
+}
+
+/* Don't sound on sound screen */
+body[data-screen="sound"] button.mapSize {
+    display: none;
+}
+
+/* Icons ------------------------------------------ */
+button.mapSize {
+    & svg.closeIcon {
+        display: none;
+    }
+}
+
+body[data-map-size="large"] button.mapSize {
+    & svg.mapIcon {
+        display: none;
+    }
+
+    & svg.closeIcon {
+        display: unset;
+    }
+}
+/* ------------------------------------------------- */
+
+@media (max-width: 900px) {
+    button.mapSize {
+        top: 8px;
+        right: 8px;
+    }
+}

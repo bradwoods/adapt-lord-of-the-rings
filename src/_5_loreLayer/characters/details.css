@@ -1,0 +1,166 @@
+.loreLayer {
+    .characterDetails {
+        grid-area: characterDetails;
+        display: none;
+
+        .character {
+            width: 100%;
+
+            display: none;
+            flex-direction: column;
+            gap: var(--size-s);
+
+            animation: var(--keyframes-lore-content);
+
+            .nameLayout {
+                width: 100%;
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 12px;
+
+                & button {
+                    width: 18px;
+                    aspect-ratio: 1;
+
+                    position: relative;
+
+                    cursor: pointer;
+
+                    svg {
+                        width: 100%;
+                        height: 100%;
+
+                        overflow: visible;
+                        fill: currentColor;
+                        transition: var(--transition-button-small);
+
+                        & path {
+                            transition: var(--transition-button-small);
+                        }
+                    }
+
+                    /* Click target */
+                    &::after {
+                        content: "";
+
+                        width: var(--size-min-button);
+                        aspect-ratio: 1;
+
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        translate: -50% -50%;
+                    }
+
+                    &:hover {
+                        & path:nth-of-type(1) {
+                            translate: 64px;
+                        }
+
+                        & path:nth-of-type(2) {
+                            translate: 32px;
+                        }
+
+                        & path:nth-of-type(3) {
+                            translate: 16px;
+                        }
+                    }
+                }
+            }
+
+            .update {
+                display: none;
+
+                text-align: center;
+                font-weight: 700;
+                color: var(--color-character-update);
+            }
+
+            .raceLayout {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+            }
+
+            .equipmentLayout {
+                display: flex;
+                flex-direction: column;
+                gap: var(--size-xs);
+            }
+
+            & ul {
+                width: 100%;
+
+                list-style-type: georgian;
+                padding-left: 24px;
+
+                font-size: var(--font-size-m);
+
+                li::marker {
+                    color: var(--color-list-marker);
+                }
+
+                & em {
+                    font-style: italic;
+                }
+            }
+        }
+    }
+}
+
+body:is(
+        [data-character="gandalf"],
+        [data-character="aragorn"],
+        [data-character="boromir"],
+        [data-character="legolas"],
+        [data-character="gimli"],
+        [data-character="frodo"],
+        [data-character="sam"],
+        [data-character="merry"],
+        [data-character="pippin"],
+        [data-character="bill"]
+    )
+    .loreLayer
+    .characterDetails {
+    display: flex;
+}
+
+body[data-character="gandalf"] .loreLayer .character.gandalf,
+body[data-character="aragorn"] .loreLayer .character.aragorn,
+body[data-character="boromir"] .loreLayer .character.boromir,
+body[data-character="legolas"] .loreLayer .character.legolas,
+body[data-character="gimli"] .loreLayer .character.gimli,
+body[data-character="frodo"] .loreLayer .character.frodo,
+body[data-character="sam"] .loreLayer .character.sam,
+body[data-character="merry"] .loreLayer .character.merry,
+body[data-character="pippin"] .loreLayer .character.pippin,
+body[data-character="bill"] .loreLayer .character.bill {
+    display: flex;
+}
+
+/* Character updates --------------------------------------------------------------- */
+body[data-ring-location="dimrillDale"] .loreLayer .character.gandalf .update {
+    display: unset;
+}
+
+body:is(
+        [data-ring-location="westGate1"],
+        [data-ring-location="westGate2"],
+        [data-ring-location="crossroads"],
+        [data-ring-location="hall1"],
+        [data-ring-location="chamber"],
+        [data-ring-location="chamberDoor"],
+        [data-ring-location="stairs"],
+        [data-ring-location="hall2"],
+        [data-ring-location="bridge1"],
+        [data-ring-location="bridge2"],
+        [data-ring-location="hall3"],
+        [data-ring-location="dimrillDale"]
+    )
+    .loreLayer
+    .character.bill
+    .update {
+    display: unset;
+}

@@ -1,0 +1,41 @@
+.tombLight {
+    width: 100%;
+    height: 900px;
+
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+
+    opacity: 0;
+    scale: 0 1;
+    transition: var(--transition-tomb-light);
+
+    & svg {
+        width: 100%;
+        height: 100%;
+
+        position: absolute;
+        top: -24px;
+        left: 50%;
+        translate: -50%;
+
+        /* solid color */
+        & path:nth-of-type(1) {
+            /* CSS blur not working in Safari. Workaround is an SVG filter */
+            /* filter: blur(6px); */
+            filter: url(#svgBlur6);
+        }
+
+        /* gradient */
+        & path:nth-of-type(2) {
+            /* filter: blur(3px); */
+            filter: url(#svgBlur3);
+        }
+    }
+
+    &.show {
+        opacity: 1;
+        scale: 1 1;
+    }
+}

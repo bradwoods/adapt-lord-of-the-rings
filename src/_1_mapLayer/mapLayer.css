@@ -1,0 +1,196 @@
+.mapLayer {
+    width: 100%;
+    height: 100vh;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    /* Enable panning on touch screens */
+    touch-action: none;
+    opacity: 0;
+    pointer-events: none;
+    background: var(--color-frame);
+    transition: var(--transition-map-layer);
+
+    .mapLayout {
+        --from-center-x: -500px;
+        --y: 0px;
+        /* Using vw units instead of percent to prevent layout shift when screen changes from scrollbar to no scrollbar */
+        --x: calc(50vw + var(--from-center-x));
+
+        width: 1600px;
+        aspect-ratio: 4 / 3;
+
+        position: absolute;
+        top: 0;
+        left: 0;
+        /* Panning doesn't interfere with this because this sets the transform property, panning sets the translate property */
+        transform: translate(var(--x), var(--y));
+        transition: var(--transition-map-layout);
+
+        .map {
+            width: 100%;
+            height: 100%;
+
+            position: absolute;
+
+            opacity: 0;
+            transition: var(--transition-map);
+        }
+    }
+
+    /* Set when user is panning */
+    .mapLayout.disableAnimate {
+        transition: none;
+    }
+}
+
+body:is(
+        [data-screen="story"],
+        [data-screen="characters"],
+        [data-screen="gondor"],
+        [data-screen="minasTirith"]
+    )
+    .mapLayer {
+    opacity: 1;
+    pointer-events: unset;
+}
+
+body[data-map-size="large"] .mapLayer {
+    .mapLayout {
+        cursor: grab;
+    }
+
+    .mapLayout:active {
+        cursor: grabbing;
+    }
+}
+
+/* Middle-earth -------------------------------------------------------- */
+body:is(
+        [data-ring-location="rivendell"],
+        [data-ring-location="hollin1"],
+        [data-ring-location="hollin2"],
+        [data-ring-location="caradhras1"],
+        [data-ring-location="caradhras2"],
+        [data-ring-location="wallsOfMoria"],
+        [data-ring-location="dimrillDale"]
+    )
+    .mapLayer
+    .map.middleEarth {
+    opacity: 1;
+}
+
+/* Moria -------------------------------------------------------- */
+body:is([data-ring-location="westGate1"], [data-ring-location="westGate2"])
+    .mapLayer {
+    .mapLayout {
+        --from-center-x: 100px;
+
+        .map.moria {
+            opacity: 1;
+        }
+    }
+}
+
+body:is([data-ring-location="crossroads"]) .mapLayer {
+    .mapLayout {
+        --from-center-x: -600px;
+        --y: -100px;
+
+        .map.moria {
+            opacity: 1;
+        }
+    }
+}
+
+body:is(
+        [data-ring-location="hall1"],
+        [data-ring-location="chamber"],
+        [data-ring-location="chamberDoor"],
+        [data-ring-location="stairs"],
+
+    )
+    .mapLayer
+    .mapLayout {
+    --from-center-x: -1050px;
+    --y: -100px;
+
+    .map.moria {
+        opacity: 1;
+    }
+}
+
+body:is(
+        [data-ring-location="hall2"],
+        [data-ring-location="bridge1"],
+        [data-ring-location="bridge2"],
+        [data-ring-location="hall3"]
+    )
+    .mapLayer
+    .mapLayout {
+    --from-center-x: -1050px;
+    --y: -300px;
+
+    .map.moria {
+        opacity: 1;
+    }
+}
+
+/* Lore locations -------------------------------------------------------- */
+body[data-screen="minasTirith"] .mapLayer {
+    .mapLayout {
+        --from-center-x: -780px;
+        --y: -400px;
+
+        .map.moria {
+            opacity: 0;
+        }
+
+        .map.middleEarth {
+            opacity: 1;
+        }
+    }
+}
+
+body[data-screen="gondor"] .mapLayer {
+    .mapLayout {
+        --from-center-x: -580px;
+        --y: -400px;
+
+        .map.moria {
+            opacity: 0;
+        }
+
+        .map.middleEarth {
+            opacity: 1;
+        }
+    }
+}
+
+/* Move maps on tablet / mobile  -------------------------------------------------------- */
+@media (max-width: 900px) {
+    /* Middle-earth */
+    .mapLayer .mapLayout {
+        --x: calc(0vw + var(--from-center-x));
+    }
+
+    /* Moria */
+    body:is(
+            [data-ring-location="westGate1"],
+            [data-ring-location="westGate2"],
+            [data-ring-location="crossroads"] [data-ring-location="hall1"],
+            [data-ring-location="chamber"],
+            [data-ring-location="chamberDoor"],
+            [data-ring-location="stairs"],
+            [data-ring-location="hall2"],
+            [data-ring-location="bridge1"],
+            [data-ring-location="bridge2"],
+            [data-ring-location="hall3"]
+        )
+        .mapLayer
+        .mapLayout {
+        --x: calc(-20vw + var(--from-center-x));
+    }
+}
