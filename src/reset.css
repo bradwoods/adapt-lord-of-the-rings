@@ -22,7 +22,6 @@
 html {
     /* Allow percentage-based heights */
     /* Setting width: 100% isn't required because it is a default for block-level elements (html and body are block level) */
-    height: 100%;
 
     font-family: var(--font-family);
     /* Sets font-size to 10px. 
@@ -44,8 +43,6 @@ html {
 }
 
 body {
-    min-height: 100%;
-
     /* Prevent the rubber band effect when the user scrolls to the top or bottom of the page (WebKit only) */
     overscroll-behavior: none;
 
